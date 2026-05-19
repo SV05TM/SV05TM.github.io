@@ -191,7 +191,7 @@ function initTerminal() {
 CS student @ George Mason University (May 2027)
 2× Amazon SDE Intern | Based in Washington, D.C.
 Passionate about backend systems, scalable infrastructure,
-and empowering the Latino STEM community.`,
+empowering the Latino STEM community, and I love Coffee!`,
 
         skills: () => `<span class="success">Languages:</span> Python, Java, JavaScript, TypeScript, SQL, C, C++
 <span class="success">Cloud:</span>     AWS (S3, Lambda, IAM, DynamoDB), Linux/UNIX
