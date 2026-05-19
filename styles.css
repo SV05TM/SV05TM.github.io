@@ -905,6 +905,17 @@ section {
     font-weight: 500;
 }
 
+.project-note {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
 /* ===== Leadership ===== */
 .leadership {
     background-color: var(--color-bg);
