@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -31,7 +31,16 @@
 
     <main>
         <section class="hero">
-            <div class="container">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="hero-particles" aria-hidden="true">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            <div class="container hero-content">
                 <p class="hero-greeting">Hi, I'm</p>
                 <h1 class="hero-name">Saúl Villatoro</h1>
                 <p class="hero-tagline">Software Developer &amp; Computer Science Student</p>
@@ -44,12 +53,20 @@
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
             </div>
+            <div class="hero-scroll" aria-hidden="true">
+                <span></span>
+            </div>
         </section>
 
         <section id="about" class="about">
             <div class="container">
                 <h2 class="section-title">About Me</h2>
                 <div class="about-content">
+                    <div class="about-image-wrapper">
+                        <div class="about-image-ring">
+                            <img src="images/headshot.jpg" alt="Saúl Villatoro" class="about-image">
+                        </div>
+                    </div>
                     <div class="about-text">
                         <p>
                             I'm a Computer Science student at George Mason University (expected May 2027) 
@@ -137,6 +154,7 @@
                 <p class="section-subtitle">A selection of things I've built. Check out my GitHub for more.</p>
                 <div class="projects-grid">
                     <article class="project-card">
+                        <div class="project-card-glow" aria-hidden="true"></div>
                         <div class="project-info">
                             <h3 class="project-title">E2E Testing Pipeline</h3>
                             <p class="project-description">
@@ -154,6 +172,7 @@
                     </article>
 
                     <article class="project-card">
+                        <div class="project-card-glow" aria-hidden="true"></div>
                         <div class="project-info">
                             <h3 class="project-title">Data Management Tool</h3>
                             <p class="project-description">
@@ -169,6 +188,7 @@
                     </article>
 
                     <article class="project-card">
+                        <div class="project-card-glow" aria-hidden="true"></div>
                         <div class="project-info">
                             <h3 class="project-title">Personal Portfolio</h3>
                             <p class="project-description">
@@ -194,6 +214,7 @@
                 <h2 class="section-title">Leadership</h2>
                 <div class="leadership-grid">
                     <article class="leadership-card">
+                        <div class="leadership-icon" aria-hidden="true">⚡</div>
                         <h3>President</h3>
                         <span class="leadership-org">Phi Iota Alpha Fraternity, Inc.</span>
                         <span class="leadership-date">May 2025 – Present</span>
@@ -201,6 +222,7 @@
                     </article>
 
                     <article class="leadership-card">
+                        <div class="leadership-icon" aria-hidden="true">🚀</div>
                         <h3>VP of External Affairs</h3>
                         <span class="leadership-org">SHPE: Leading Hispanics in STEM</span>
                         <span class="leadership-date">September 2024 – Present</span>
@@ -208,8 +230,9 @@
                     </article>
 
                     <article class="leadership-card">
+                        <div class="leadership-icon" aria-hidden="true">🤝</div>
                         <h3>Community Outreach</h3>
-                        <span class="leadership-org">ALPFA (Association of Latino Professionals for America)</span>
+                        <span class="leadership-org">ALPFA</span>
                         <span class="leadership-date">September 2024 – Present</span>
                         <p>Organizing leadership and networking events to empower aspiring Latino professionals.</p>
                     </article>
