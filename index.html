@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saul Villatoro — Software Developer</title>
-    <meta name="description" content="Saul Villatoro — Software Developer based in Washington, D.C. Amazon SDE Intern, CS student at George Mason University.">
+    <title>Saúl Villatoro — Software Developer</title>
+    <meta name="description" content="Saúl Villatoro — Software Developer based in Washington, D.C. Amazon SDE Intern, CS student at George Mason University.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
 <body>
+    <!-- Terminal-style loading screen -->
+    <div class="loader" id="loader">
+        <div class="loader-terminal">
+            <div class="loader-line"><span class="prompt">$</span> initializing portfolio...</div>
+            <div class="loader-line delayed-1"><span class="prompt">$</span> loading modules...</div>
+            <div class="loader-line delayed-2"><span class="prompt">$</span> ready. <span class="cursor-blink">_</span></div>
+        </div>
+    </div>
+
     <header class="header">
         <nav class="nav container">
-            <a href="#" class="nav-logo">SV</a>
+            <a href="#" class="nav-logo"><span class="logo-bracket">{</span>SV<span class="logo-bracket">}</span></a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#leadership">Leadership</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">about()</a></li>
+                <li><a href="#experience">experience()</a></li>
+                <li><a href="#stack">stack()</a></li>
+                <li><a href="#projects">projects()</a></li>
+                <li><a href="#leadership">leadership()</a></li>
+                <li><a href="#contact">connect()</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
@@ -33,7 +44,11 @@
         <section class="hero">
             <div class="hero-bg" aria-hidden="true"></div>
             <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="hero-grid-bg" aria-hidden="true"></div>
             <div class="hero-particles" aria-hidden="true">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
                 <div class="particle"></div>
                 <div class="particle"></div>
                 <div class="particle"></div>
@@ -41,16 +56,28 @@
                 <div class="particle"></div>
             </div>
             <div class="container hero-content">
-                <p class="hero-greeting">Hi, I'm</p>
-                <h1 class="hero-name">Saul Villatoro</h1>
-                <p class="hero-tagline">Software Developer &amp; Computer Science Student</p>
-                <p class="hero-description">
-                    I build scalable software solutions and enjoy turning complex problems into 
-                    elegant, performant systems. Based in Washington, D.C.
-                </p>
-                <div class="hero-cta">
-                    <a href="#experience" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <div class="hero-terminal">
+                    <div class="terminal-bar">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">saul@portfolio:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="terminal-line"><span class="prompt">$</span> whoami</p>
+                        <h1 class="hero-name">Saúl Villatoro</h1>
+                        <p class="terminal-line"><span class="prompt">$</span> cat role.txt</p>
+                        <p class="hero-tagline">Software Developer &amp; Backend Engineer</p>
+                        <p class="terminal-line"><span class="prompt">$</span> echo $ABOUT</p>
+                        <p class="hero-description">
+                            I build scalable backend systems, automate complex workflows, and 
+                            turn infrastructure challenges into elegant solutions. Based in Washington, D.C.
+                        </p>
+                        <div class="hero-cta">
+                            <a href="#experience" class="btn btn-primary">./view_work.sh</a>
+                            <a href="#contact" class="btn btn-secondary">./connect.sh</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="hero-scroll" aria-hidden="true">
@@ -60,43 +87,43 @@
 
         <section id="about" class="about">
             <div class="container">
-                <h2 class="section-title">About Me</h2>
+                <h2 class="section-title"><span class="title-comment">// </span>About Me</h2>
                 <div class="about-content">
                     <div class="about-image-wrapper">
                         <div class="about-image-ring">
                             <img src="images/headshot.jpg" alt="Saúl Villatoro" class="about-image">
                         </div>
+                        <div class="image-status">
+                            <span class="status-dot"></span> Available for opportunities
+                        </div>
                     </div>
                     <div class="about-text">
                         <p>
-                            I'm a Computer Science student at George Mason University (expected May 2027) 
-                            with hands-on experience as a Software Development Engineer Intern at Amazon. 
+                            I'm a Computer Science student at <strong>George Mason University</strong> (expected May 2027) 
+                            with hands-on experience as a Software Development Engineer Intern at <strong>Amazon</strong>. 
                             I'm passionate about building high-performance, scalable systems and 
                             contributing to teams that ship impactful products.
                         </p>
                         <p>
-                            I also attended Harvard University Summer School where I studied C++ and 
+                            I also attended <strong>Harvard University Summer School</strong> where I studied C++ and 
                             Web Programming. Outside of engineering, I'm deeply involved in 
                             empowering the Latino STEM community through leadership roles in 
                             SHPE, ALPFA, and Phi Iota Alpha Fraternity.
                         </p>
-                    </div>
-                    <div class="skills">
-                        <h3>Technologies I work with:</h3>
-                        <ul class="skills-list">
-                            <li>Python</li>
-                            <li>Java</li>
-                            <li>JavaScript</li>
-                            <li>SQL</li>
-                            <li>C / C++</li>
-                            <li>Linux / UNIX</li>
-                            <li>AWS (S3, Lambda, IAM)</li>
-                            <li>Django</li>
-                            <li>React</li>
-                            <li>HTML &amp; CSS</li>
-                            <li>Git &amp; GitHub</li>
-                            <li>REST APIs</li>
-                        </ul>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number">2×</span>
+                                <span class="stat-label">Amazon Intern</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">10×</span>
+                                <span class="stat-label">Perf Improvement</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">200+</span>
+                                <span class="stat-label">Daily Samples</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,7 +131,7 @@
 
         <section id="experience" class="experience">
             <div class="container">
-                <h2 class="section-title">Experience</h2>
+                <h2 class="section-title"><span class="title-comment">// </span>Experience</h2>
                 <div class="timeline">
                     <article class="timeline-item">
                         <div class="timeline-header">
@@ -148,15 +175,103 @@
             </div>
         </section>
 
+        <section id="stack" class="stack">
+            <div class="container">
+                <h2 class="section-title"><span class="title-comment">// </span>Tech Stack</h2>
+                <p class="section-subtitle">Tools and technologies I use to build things.</p>
+                
+                <div class="stack-category">
+                    <h3 class="stack-label">Languages</h3>
+                    <div class="stack-grid">
+                        <div class="stack-item">
+                            <i class="devicon-python-plain"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-java-plain"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-javascript-plain"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-c-plain"></i>
+                            <span>C</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-cplusplus-plain"></i>
+                            <span>C++</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-azuresqldatabase-plain"></i>
+                            <span>SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-category">
+                    <h3 class="stack-label">Cloud & Infrastructure</h3>
+                    <div class="stack-grid">
+                        <div class="stack-item">
+                            <i class="devicon-amazonwebservices-plain-wordmark"></i>
+                            <span>AWS</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-linux-plain"></i>
+                            <span>Linux</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-bash-plain"></i>
+                            <span>Bash</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-git-plain"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-github-original"></i>
+                            <span>GitHub</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-category">
+                    <h3 class="stack-label">Frameworks & Web</h3>
+                    <div class="stack-grid">
+                        <div class="stack-item">
+                            <i class="devicon-django-plain"></i>
+                            <span>Django</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-react-original"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-html5-plain"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="stack-item">
+                            <i class="devicon-css3-plain"></i>
+                            <span>CSS3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="projects" class="projects">
             <div class="container">
-                <h2 class="section-title">Projects</h2>
+                <h2 class="section-title"><span class="title-comment">// </span>Projects</h2>
                 <p class="section-subtitle">A selection of things I've built. Check out my GitHub for more.</p>
                 <div class="projects-grid">
                     <article class="project-card">
                         <div class="project-card-glow" aria-hidden="true"></div>
                         <div class="project-info">
-                            <h3 class="project-title">E2E Testing Pipeline</h3>
+                            <div class="project-header">
+                                <span class="project-icon">📦</span>
+                                <h3 class="project-title">E2E Testing Pipeline</h3>
+                            </div>
                             <p class="project-description">
                                 Automated SQL query jobs and lazy caching system for end-to-end testing 
                                 of purchase lifecycles at scale, with encrypted S3 storage and 
@@ -174,7 +289,10 @@
                     <article class="project-card">
                         <div class="project-card-glow" aria-hidden="true"></div>
                         <div class="project-info">
-                            <h3 class="project-title">Data Management Tool</h3>
+                            <div class="project-header">
+                                <span class="project-icon">☁️</span>
+                                <h3 class="project-title">Data Management Tool</h3>
+                            </div>
                             <p class="project-description">
                                 Cloud-based software leveraging Amazon S3 and Python APIs to streamline 
                                 data collection, organization, and access for e-commerce teams.
@@ -190,7 +308,10 @@
                     <article class="project-card">
                         <div class="project-card-glow" aria-hidden="true"></div>
                         <div class="project-info">
-                            <h3 class="project-title">Personal Portfolio</h3>
+                            <div class="project-header">
+                                <span class="project-icon">🌐</span>
+                                <h3 class="project-title">Personal Portfolio</h3>
+                            </div>
                             <p class="project-description">
                                 This website — a responsive, accessible personal site built with 
                                 vanilla HTML, CSS, and JavaScript. No frameworks, no build step.
@@ -201,7 +322,7 @@
                                 <li>JavaScript</li>
                             </ul>
                             <div class="project-links">
-                                <a href="https://github.com/SV05TM" class="project-link" aria-label="View source code">Source Code ↗</a>
+                                <a href="https://github.com/SV05TM" class="project-link" aria-label="View source code">$ git clone ↗</a>
                             </div>
                         </div>
                     </article>
@@ -211,7 +332,7 @@
 
         <section id="leadership" class="leadership">
             <div class="container">
-                <h2 class="section-title">Leadership</h2>
+                <h2 class="section-title"><span class="title-comment">// </span>Leadership</h2>
                 <div class="leadership-grid">
                     <article class="leadership-card">
                         <div class="leadership-icon" aria-hidden="true">⚡</div>
@@ -225,7 +346,7 @@
                         <div class="leadership-icon" aria-hidden="true">🚀</div>
                         <h3>VP of External Affairs</h3>
                         <span class="leadership-org">SHPE: Leading Hispanics in STEM</span>
-                        <span class="leadership-date">September 2024 – May 2025</span>
+                        <span class="leadership-date">September 2024 – May 2026</span>
                         <p>Drove corporate partnerships and external outreach strategy, securing sponsorships and coordinating cross-chapter collaborations to expand professional development opportunities for Hispanic STEM students.</p>
                     </article>
 
@@ -242,15 +363,31 @@
 
         <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="contact-text">
-                    I'm always open to new opportunities, collaborations, and interesting conversations. 
-                    Whether you have a question or just want to connect, feel free to reach out.
-                </p>
-                <a href="mailto:Villatoro980@outlook.com" class="btn btn-primary">Say Hello</a>
-                <div class="social-links">
-                    <a href="https://github.com/SV05TM" aria-label="GitHub" class="social-link">GitHub</a>
-                    <a href="https://www.linkedin.com/in/sv-link/" aria-label="LinkedIn" class="social-link">LinkedIn</a>
+                <h2 class="section-title"><span class="title-comment">// </span>Get In Touch</h2>
+                <div class="contact-terminal">
+                    <div class="terminal-bar">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">contact@saul:~</span>
+                    </div>
+                    <div class="terminal-body contact-body">
+                        <p class="terminal-line"><span class="prompt">$</span> cat message.txt</p>
+                        <p class="contact-text">
+                            I'm always open to new opportunities, collaborations, and interesting conversations. 
+                            Whether you have a question or just want to connect, feel free to reach out.
+                        </p>
+                        <p class="terminal-line"><span class="prompt">$</span> open mailto:</p>
+                        <a href="mailto:Villatoro980@outlook.com" class="btn btn-primary">Villatoro980@outlook.com</a>
+                        <div class="social-links">
+                            <a href="https://github.com/SV05TM" aria-label="GitHub" class="social-link">
+                                <i class="devicon-github-original"></i> GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/sv-link/" aria-label="LinkedIn" class="social-link">
+                                <i class="devicon-linkedin-plain"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -258,7 +395,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>Built by Saúl Villatoro &copy; 2026</p>
+            <p><span class="prompt">$</span> echo "Built by Saúl Villatoro &copy; 2026"</p>
         </div>
     </footer>
 

@@ -1,14 +1,22 @@
+// Terminal-style loading screen
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        loader.classList.add('hidden');
+        setTimeout(() => loader.remove(), 500);
+    }, 1800);
+});
+
 // Mobile navigation toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
-    navToggle.setAttribute('aria-expanded', 
+    navToggle.setAttribute('aria-expanded',
         navLinks.classList.contains('active'));
 });
 
-// Close mobile nav when a link is clicked
 navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
@@ -31,7 +39,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Apply fade-in to sections and timeline items
 document.querySelectorAll('section > .container').forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
@@ -43,9 +50,9 @@ document.querySelectorAll('.timeline-item').forEach((el, i) => {
     observer.observe(el);
 });
 
-document.querySelectorAll('.project-card, .leadership-card').forEach((el, i) => {
+document.querySelectorAll('.project-card, .leadership-card, .stack-item').forEach((el, i) => {
     el.classList.add('fade-in');
-    el.style.transitionDelay = `${i * 0.1}s`;
+    el.style.transitionDelay = `${(i % 6) * 0.08}s`;
     observer.observe(el);
 });
 
@@ -66,7 +73,7 @@ const heroBg = document.querySelector('.hero-bg');
 window.addEventListener('scroll', () => {
     if (heroBg) {
         const scrolled = window.scrollY;
-        heroBg.style.transform = `scale(1.05) translateY(${scrolled * 0.3}px)`;
+        heroBg.style.transform = `scale(1.05) translateY(${scrolled * 0.35}px)`;
     }
 });
 
@@ -85,13 +92,11 @@ document.querySelectorAll('.project-card').forEach(card => {
 
     card.addEventListener('mouseleave', () => {
         const glow = card.querySelector('.project-card-glow');
-        if (glow) {
-            glow.style.opacity = '0';
-        }
+        if (glow) glow.style.opacity = '0';
     });
 });
 
-// Smooth active nav link highlighting
+// Active nav link highlighting
 const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
@@ -112,3 +117,22 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Typing effect for hero tagline
+const tagline = document.querySelector('.hero-tagline');
+if (tagline) {
+    const text = tagline.textContent;
+    tagline.textContent = '';
+    tagline.style.borderRight = '2px solid var(--color-green)';
+    let i = 0;
+    const typeInterval = setInterval(() => {
+        tagline.textContent += text[i];
+        i++;
+        if (i >= text.length) {
+            clearInterval(typeInterval);
+            setTimeout(() => {
+                tagline.style.borderRight = 'none';
+            }, 1000);
+        }
+    }, 50);
+}
