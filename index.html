@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúl Villatoro — Software Developer</title>
+    <meta name="description" content="Saúl Villatoro — Software Developer based in Washington, D.C. Amazon SDE Intern, CS student at George Mason University.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="nav-logo">SV</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <p class="hero-greeting">Hi, I'm</p>
+                <h1 class="hero-name">Saúl Villatoro</h1>
+                <p class="hero-tagline">Software Developer &amp; Computer Science Student</p>
+                <p class="hero-description">
+                    I build scalable software solutions and enjoy turning complex problems into 
+                    elegant, performant systems. Based in Washington, D.C.
+                </p>
+                <div class="hero-cta">
+                    <a href="#experience" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a Computer Science student at George Mason University (expected May 2027) 
+                            with hands-on experience as a Software Development Engineer Intern at Amazon. 
+                            I'm passionate about building high-performance, scalable systems and 
+                            contributing to teams that ship impactful products.
+                        </p>
+                        <p>
+                            I also attended Harvard University Summer School where I studied C++ and 
+                            Web Programming. Outside of engineering, I'm deeply involved in 
+                            empowering the Latino STEM community through leadership roles in 
+                            SHPE, ALPFA, and Phi Iota Alpha Fraternity.
+                        </p>
+                    </div>
+                    <div class="skills">
+                        <h3>Technologies I work with:</h3>
+                        <ul class="skills-list">
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>JavaScript</li>
+                            <li>SQL</li>
+                            <li>C / C++</li>
+                            <li>Linux / UNIX</li>
+                            <li>AWS (S3, Lambda, IAM)</li>
+                            <li>Django</li>
+                            <li>React</li>
+                            <li>HTML &amp; CSS</li>
+                            <li>Git &amp; GitHub</li>
+                            <li>REST APIs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <article class="timeline-item">
+                        <div class="timeline-header">
+                            <h3>Software Development Engineer Intern</h3>
+                            <span class="timeline-company">Amazon — Seattle, WA</span>
+                            <span class="timeline-date">May 2025 – August 2025</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Developed automated SQL database query jobs to collect and scrape 200+ customer purchase samples daily for E2E testing of Amazon purchase lifecycles.</li>
+                            <li>Secured sensitive customer data by storing results in encrypted S3 buckets with secure deletion protocols.</li>
+                            <li>Implemented a lazy caching mechanism for serialized data resurrection, achieving up to 10× performance improvements in end-to-end testing.</li>
+                            <li>Designed and deployed an approval workflow that reduced build times from ~4 hours to under 15 minutes, enabling advanced multithreaded testing.</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-header">
+                            <h3>Amazon Future Engineer SDE Intern</h3>
+                            <span class="timeline-company">Amazon — Seattle, WA</span>
+                            <span class="timeline-date">May 2024 – August 2024</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Utilized Amazon S3 Cloud Services and Python API to develop software that streamlined data management for various Amazon tools.</li>
+                            <li>Drafted over 1,000 lines of Python code for a program aimed at enhancing the troubleshooting process.</li>
+                            <li>Coordinated with Amazon managers and leadership to tailor software requirements for multiple e-commerce teams.</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-header">
+                            <h3>Product Research &amp; Development Intern</h3>
+                            <span class="timeline-company">On Ramps to Careers — Washington, DC</span>
+                            <span class="timeline-date">May 2023 – August 2023</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Partnered with Samsung and GoX Labs to leverage marketing insights and engage 10+ industry stakeholders.</li>
+                            <li>Led a 4-person research team to produce 5+ actionable product recommendations, improving usability by 15%.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">A selection of things I've built. Check out my GitHub for more.</p>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-info">
+                            <h3 class="project-title">E2E Testing Pipeline</h3>
+                            <p class="project-description">
+                                Automated SQL query jobs and lazy caching system for end-to-end testing 
+                                of purchase lifecycles at scale, with encrypted S3 storage and 
+                                multithreaded execution.
+                            </p>
+                            <ul class="project-tech">
+                                <li>Python</li>
+                                <li>SQL</li>
+                                <li>AWS S3</li>
+                                <li>Lambda</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-info">
+                            <h3 class="project-title">Data Management Tool</h3>
+                            <p class="project-description">
+                                Cloud-based software leveraging Amazon S3 and Python APIs to streamline 
+                                data collection, organization, and access for e-commerce teams.
+                            </p>
+                            <ul class="project-tech">
+                                <li>Python</li>
+                                <li>AWS S3</li>
+                                <li>REST API</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-info">
+                            <h3 class="project-title">Personal Portfolio</h3>
+                            <p class="project-description">
+                                This website — a responsive, accessible personal site built with 
+                                vanilla HTML, CSS, and JavaScript. No frameworks, no build step.
+                            </p>
+                            <ul class="project-tech">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/SV05TM" class="project-link" aria-label="View source code">Source Code ↗</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="leadership" class="leadership">
+            <div class="container">
+                <h2 class="section-title">Leadership</h2>
+                <div class="leadership-grid">
+                    <article class="leadership-card">
+                        <h3>President</h3>
+                        <span class="leadership-org">Phi Iota Alpha Fraternity, Inc.</span>
+                        <span class="leadership-date">May 2025 – Present</span>
+                        <p>Managing a $6,000 annual budget and orchestrating cultural, educational, and professional events.</p>
+                    </article>
+
+                    <article class="leadership-card">
+                        <h3>VP of External Affairs</h3>
+                        <span class="leadership-org">SHPE: Leading Hispanics in STEM</span>
+                        <span class="leadership-date">September 2024 – Present</span>
+                        <p>Relaunched the SHPE Jr. mentoring initiative connecting with 10+ motivated Latino high school students.</p>
+                    </article>
+
+                    <article class="leadership-card">
+                        <h3>Community Outreach</h3>
+                        <span class="leadership-org">ALPFA (Association of Latino Professionals for America)</span>
+                        <span class="leadership-date">September 2024 – Present</span>
+                        <p>Organizing leadership and networking events to empower aspiring Latino professionals.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-text">
+                    I'm always open to new opportunities, collaborations, and interesting conversations. 
+                    Whether you have a question or just want to connect, feel free to reach out.
+                </p>
+                <a href="mailto:Villatoro980@outlook.com" class="btn btn-primary">Say Hello</a>
+                <div class="social-links">
+                    <a href="https://github.com/SV05TM" aria-label="GitHub" class="social-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/sv-link/" aria-label="LinkedIn" class="social-link">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Built by Saúl Villatoro &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
