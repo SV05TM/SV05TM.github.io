@@ -40,6 +40,8 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll('section > .container').forEach(el => {
+    // Don't fade the interactive terminal - it needs to be immediately usable
+    if (el.closest('#terminal')) return;
     el.classList.add('fade-in');
     observer.observe(el);
 });

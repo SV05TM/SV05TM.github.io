@@ -1195,6 +1195,8 @@ section {
     padding: 12px 24px;
     border-top: 1px solid var(--color-border);
     background: rgba(30, 41, 59, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
 .terminal-input {
@@ -1206,6 +1208,8 @@ section {
     font-family: var(--font-mono);
     font-size: 0.85rem;
     caret-color: var(--color-accent);
+    position: relative;
+    z-index: 10;
 }
 
 .terminal-input::placeholder {
@@ -1231,11 +1235,11 @@ section {
     white-space: pre-wrap;
 }
 
-.output-response.error {
+.output-response .error {
     color: var(--color-red);
 }
 
-.output-response.success {
+.output-response .success {
     color: var(--color-green);
 }
 
