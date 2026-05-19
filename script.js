@@ -1,28 +1,32 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 // Terminal-style loading screen
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
+setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) {
         loader.classList.add('hidden');
         setTimeout(() => loader.remove(), 500);
-    }, 1800);
-});
+    }
+}, 1800);
 
 // Mobile navigation toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    navToggle.setAttribute('aria-expanded',
-        navLinks.classList.contains('active'));
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        navToggle.setAttribute('aria-expanded', 'false');
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded',
+            navLinks.classList.contains('active'));
     });
-});
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
 
 // Scroll-based fade-in animations
 const observerOptions = {
@@ -40,7 +44,6 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll('section > .container').forEach(el => {
-    // Don't fade the interactive terminal - it needs to be immediately usable
     if (el.closest('#terminal')) return;
     el.classList.add('fade-in');
     observer.observe(el);
@@ -62,10 +65,12 @@ document.querySelectorAll('.project-card, .leadership-card, .stack-item').forEac
 const header = document.querySelector('.header');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.4)';
-    } else {
-        header.style.boxShadow = 'none';
+    if (header) {
+        if (window.scrollY > 50) {
+            header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.4)';
+        } else {
+            header.style.boxShadow = 'none';
+        }
     }
 });
 
@@ -103,13 +108,11 @@ const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY + 100;
-
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
         const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-
         if (navLink) {
             if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                 navLink.style.color = 'var(--color-accent)';
@@ -128,9 +131,10 @@ if (tagline) {
     tagline.style.borderRight = '2px solid var(--color-green)';
     let i = 0;
     const typeInterval = setInterval(() => {
-        tagline.textContent += text[i];
-        i++;
-        if (i >= text.length) {
+        if (i < text.length) {
+            tagline.textContent += text[i];
+            i++;
+        } else {
             clearInterval(typeInterval);
             setTimeout(() => {
                 tagline.style.borderRight = 'none';
@@ -155,13 +159,22 @@ document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
     });
 });
 
-
 // ===== Interactive Terminal =====
-const terminalInput = document.getElementById('terminal-input');
-const terminalOutput = document.getElementById('terminal-output');
+initTerminal();
 
-const commands = {
-    help: () => `Available commands:
+}); // end DOMContentLoaded
+
+function initTerminal() {
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalOutput = document.getElementById('terminal-output');
+
+    if (!terminalInput || !terminalOutput) {
+        console.error('Terminal elements not found');
+        return;
+    }
+
+    const commands = {
+        help: () => `Available commands:
   <span class="cmd-highlight">about</span>      — Who I am
   <span class="cmd-highlight">skills</span>     — My tech stack
   <span class="cmd-highlight">experience</span> — Work history
@@ -174,82 +187,112 @@ const commands = {
   <span class="cmd-highlight">clear</span>      — Clear terminal
   <span class="cmd-highlight">help</span>       — Show this message`,
 
-    about: () => `<span class="success">Saúl Villatoro</span>
+        about: () => `<span class="success">Saúl Villatoro</span>
 CS student @ George Mason University (May 2027)
 2× Amazon SDE Intern | Based in Washington, D.C.
 Passionate about backend systems, scalable infrastructure,
 and empowering the Latino STEM community.`,
 
-    skills: () => `<span class="success">Languages:</span> Python, Java, JavaScript, TypeScript, SQL, C, C++
+        skills: () => `<span class="success">Languages:</span> Python, Java, JavaScript, TypeScript, SQL, C, C++
 <span class="success">Cloud:</span>     AWS (S3, Lambda, IAM, DynamoDB), Linux/UNIX
 <span class="success">Frameworks:</span> Django, Angular, React, Node.js
 <span class="success">Tools:</span>     Git, GitHub, Bash, REST APIs`,
 
-    experience: () => `<span class="success">Upcoming:</span> Technology Consultant Analyst Intern @ Accenture/Avanade
+        experience: () => `<span class="success">Upcoming:</span> Technology Consultant Analyst Intern @ Accenture/Avanade
 <span class="success">2025:</span>     SDE Intern @ Amazon — E2E testing, 10× perf gains
 <span class="success">2024:</span>     Amazon Future Engineer SDE Intern — S3 data tools
 <span class="success">2023:</span>     Product R&D Intern @ On Ramps to Careers`,
 
-    education: () => `<span class="success">George Mason University</span> — B.S. Computer Science (Expected May 2027)
+        education: () => `<span class="success">George Mason University</span> — B.S. Computer Science (Expected May 2027)
   Coursework: Data Structures, OOP, Low-Level Programming, Systems
 <span class="success">Harvard Summer School</span> — Summer 2022
   Coursework: C++ for Programmers, Web Programming (Python & JS)`,
 
-    contact: () => `<span class="success">Email:</span>    <a href="mailto:Villatoro980@outlook.com">Villatoro980@outlook.com</a>
+        contact: () => `<span class="success">Email:</span>    <a href="mailto:Villatoro980@outlook.com">Villatoro980@outlook.com</a>
 <span class="success">Phone:</span>    (202) 735-4494
 <span class="success">Location:</span> Washington, D.C.`,
 
-    currently: () => `<span class="success">→</span> Upcoming Technology Consultant Analyst Intern at Accenture
+        currently: () => `<span class="success">→</span> Upcoming Technology Consultant Analyst Intern at Accenture
   Working with Avanade (Microsoft joint venture)
   Stack: Angular, Node.js, TypeScript, DynamoDB, AWS Lambda
 <span class="success">→</span> President of Phi Iota Alpha Fraternity
 <span class="success">→</span> Mentoring underclassmen at George Mason University`,
 
-    socials: () => `<span class="success">GitHub:</span>   <a href="https://github.com/SV05TM" target="_blank">github.com/SV05TM</a>
+        socials: () => `<span class="success">GitHub:</span>   <a href="https://github.com/SV05TM" target="_blank">github.com/SV05TM</a>
 <span class="success">LinkedIn:</span> <a href="https://www.linkedin.com/in/sv-link/" target="_blank">linkedin.com/in/sv-link</a>
 <span class="success">Website:</span>  <a href="https://saulv.dev">saulv.dev</a>`,
 
-    resume: () => {
-        return `<span class="success">Downloading resume...</span> (just kidding — add your PDF link here)
-Tip: Add a resume.pdf to your repo and update this command.`;
-    },
+        resume: () => `<span class="success">Downloading resume...</span> (just kidding — add your PDF link here)
+Tip: Add a resume.pdf to your repo and update this command.`,
 
-    secret: () => `<span class="success">🎉 You found the easter egg!</span>
+        secret: () => `<span class="success">🎉 You found the easter egg!</span>
 Fun facts:
   → I've written 1,000+ lines of Python in a single internship
   → I reduced build times from 4 hours to 15 minutes
   → This entire site is vanilla HTML/CSS/JS — no frameworks
   → Type "sudo hire saul" for a surprise`,
 
-    'sudo hire saul': () => `<span class="success">Permission granted.</span> ✓
+        'sudo hire saul': () => `<span class="success">Permission granted.</span> ✓
 Sending offer letter to Villatoro980@outlook.com...
 Just kidding. But seriously, <a href="mailto:Villatoro980@outlook.com">let's talk</a>. 🚀`,
 
-    clear: () => 'CLEAR',
-
-    whoami: () => `visitor@saulv.dev`,
-
-    pwd: () => `/home/visitor/saulv.dev`,
-
-    ls: () => `about.txt  experience/  projects/  skills.json  contact.md  README.md`,
-
-    date: () => new Date().toString(),
-
-    echo: (args) => args || '',
-
-    neofetch: () => `<span class="success">       {SV}</span>        visitor@saulv.dev
+        clear: () => 'CLEAR',
+        whoami: () => `visitor@saulv.dev`,
+        pwd: () => `/home/visitor/saulv.dev`,
+        ls: () => `about.txt  experience/  projects/  skills.json  contact.md  README.md`,
+        date: () => new Date().toString(),
+        echo: (args) => args || '',
+        neofetch: () => `<span class="success">       {SV}</span>        visitor@saulv.dev
                     ─────────────────
   <span class="success">OS:</span>      saulv.dev v1.0.0
   <span class="success">Host:</span>    GitHub Pages
   <span class="success">Shell:</span>   interactive-terminal
   <span class="success">Theme:</span>   Dark [accent: #38bdf8]
   <span class="success">Uptime:</span>  since 2026`,
-};
+    };
 
-const commandHistory = [];
-let historyIndex = -1;
+    const commandHistory = [];
+    let historyIndex = -1;
 
-if (terminalInput) {
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function processCommand(input) {
+        // Display the command
+        const cmdLine = document.createElement('div');
+        cmdLine.className = 'output-line';
+        cmdLine.innerHTML = `<span class="prompt">$</span> <span class="cmd">${escapeHtml(input)}</span>`;
+        terminalOutput.appendChild(cmdLine);
+
+        // Process command
+        const lowerInput = input.toLowerCase();
+        const [cmd, ...argParts] = lowerInput.split(' ');
+        const args = argParts.join(' ');
+        let response;
+
+        if (commands[lowerInput]) {
+            response = commands[lowerInput](args);
+        } else if (commands[cmd]) {
+            response = commands[cmd](args);
+        } else {
+            response = `<span class="error">command not found: ${escapeHtml(cmd)}</span>\nType <span class="cmd-highlight">help</span> for available commands.`;
+        }
+
+        if (response === 'CLEAR') {
+            terminalOutput.innerHTML = '';
+        } else {
+            const responseLine = document.createElement('div');
+            responseLine.className = 'output-response';
+            responseLine.innerHTML = response;
+            terminalOutput.appendChild(responseLine);
+        }
+
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    }
+
     terminalInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const input = terminalInput.value.trim();
@@ -257,42 +300,10 @@ if (terminalInput) {
 
             commandHistory.unshift(input);
             historyIndex = -1;
-
-            // Display the command
-            const cmdLine = document.createElement('div');
-            cmdLine.className = 'output-line';
-            cmdLine.innerHTML = `<span class="prompt">$</span> <span class="cmd">${escapeHtml(input)}</span>`;
-            terminalOutput.appendChild(cmdLine);
-
-            // Process command
-            const [cmd, ...argParts] = input.toLowerCase().split(' ');
-            const args = argParts.join(' ');
-            let response;
-
-            // Check for full command match first (e.g. "sudo hire saul")
-            if (commands[input.toLowerCase()]) {
-                response = commands[input.toLowerCase()](args);
-            } else if (commands[cmd]) {
-                response = commands[cmd](args);
-            } else {
-                response = `<span class="error">command not found: ${escapeHtml(cmd)}</span>\nType <span class="cmd-highlight">help</span> for available commands.`;
-            }
-
-            // Handle clear
-            if (response === 'CLEAR') {
-                terminalOutput.innerHTML = '';
-            } else {
-                const responseLine = document.createElement('div');
-                responseLine.className = 'output-response';
-                responseLine.innerHTML = response;
-                terminalOutput.appendChild(responseLine);
-            }
-
+            processCommand(input);
             terminalInput.value = '';
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
         }
 
-        // Command history navigation
         if (e.key === 'ArrowUp') {
             e.preventDefault();
             if (historyIndex < commandHistory.length - 1) {
@@ -312,25 +323,22 @@ if (terminalInput) {
             }
         }
 
-        // Tab completion
         if (e.key === 'Tab') {
             e.preventDefault();
             const partial = terminalInput.value.toLowerCase();
-            const matches = Object.keys(commands).filter(c => c.startsWith(partial));
-            if (matches.length === 1) {
-                terminalInput.value = matches[0];
+            if (partial) {
+                const matches = Object.keys(commands).filter(c => c.startsWith(partial));
+                if (matches.length === 1) {
+                    terminalInput.value = matches[0];
+                }
             }
         }
     });
 
-    // Focus terminal on click
-    document.querySelector('.interactive-terminal').addEventListener('click', () => {
+    // Focus terminal on click anywhere in the terminal
+    document.querySelector('.interactive-terminal').addEventListener('click', (e) => {
         terminalInput.focus();
     });
-}
 
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    console.log('Interactive terminal initialized');
 }
