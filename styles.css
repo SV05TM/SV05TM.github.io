@@ -12,6 +12,12 @@ html, body {
     overflow-x: hidden;
 }
 
+#page-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 :root {
     --color-bg: #0a0f1c;
     --color-bg-light: #111827;
@@ -218,7 +224,6 @@ a:hover {
     background-image: url('images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     transform: scale(1.05);
 }
 
