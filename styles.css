@@ -7,6 +7,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
 :root {
     --color-bg: #0a0f1c;
     --color-bg-light: #111827;
@@ -42,6 +47,8 @@ body {
     line-height: 1.7;
     font-size: 16px;
     overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .container {
@@ -117,6 +124,7 @@ a:hover {
     top: 0;
     left: 0;
     right: 0;
+    width: 100%;
     z-index: 1000;
     background-color: rgba(10, 15, 28, 0.8);
     backdrop-filter: blur(16px);
@@ -196,6 +204,7 @@ a:hover {
 /* ===== Hero ===== */
 .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     position: relative;
@@ -1107,8 +1116,16 @@ section {
         align-items: flex-start;
     }
 
-    .hero-bg { background-attachment: scroll; }
+    .hero-bg {
+        background-attachment: scroll;
+        position: absolute;
+    }
+
     .hero-scroll { display: none; }
+
+    .hero-terminal {
+        max-width: 100%;
+    }
 
     .terminal-body { padding: 20px; }
 
