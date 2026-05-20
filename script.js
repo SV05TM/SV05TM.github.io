@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+// Prevent any horizontal scroll
+window.addEventListener('scroll', () => {
+    if (window.scrollX !== 0) {
+        window.scrollTo(0, window.scrollY);
+    }
+});
+
 // Terminal-style loading screen
 setTimeout(() => {
     const loader = document.getElementById('loader');
