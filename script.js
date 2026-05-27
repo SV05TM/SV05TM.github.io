@@ -208,7 +208,12 @@ empowering the Latino STEM community, and I love Coffee!`,
         experience: () => `<span class="success">Upcoming:</span> Technology Consultant Analyst Intern @ Accenture/Avanade
 <span class="success">2025:</span>     SDE Intern @ Amazon — E2E testing, 10× perf gains
 <span class="success">2024:</span>     Amazon Future Engineer SDE Intern — S3 data tools
-<span class="success">2023:</span>     Product R&D Intern @ On Ramps to Careers`,
+<span class="success">2023:</span>     Product R&D Intern @ On Ramps to Careers
+
+<span class="success">Projects:</span>
+  → Semester Collab — Full-stack event management PWA (React, Node, MongoDB, Socket.IO)
+  → E2E Testing Pipeline — Automated testing at Amazon scale
+  → Cloud Data Management Platform — S3-backed data tools`,
 
         education: () => `<span class="success">George Mason University</span> — B.S. Computer Science (Expected May 2027)
   Coursework: Data Structures, OOP, Low-Level Programming, Systems
