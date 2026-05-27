@@ -842,10 +842,76 @@ section {
     position: relative;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 28px;
+/* Carousel */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    padding: 4px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(8px);
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    z-index: 5;
+}
+
+.carousel-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.carousel-btn-prev { left: 12px; }
+.carousel-btn-next { right: 12px; }
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--color-accent);
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--transition);
+    padding: 0;
+}
+
+.carousel-dot.active,
+.carousel-dot:hover {
+    background: var(--color-accent);
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
 }
 
 .project-card {
@@ -873,7 +939,7 @@ section {
 .project-card:hover .project-card-glow { opacity: 1; }
 
 .project-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
     border-color: var(--color-accent);
     box-shadow: var(--shadow-glow), var(--shadow-lg);
 }
@@ -1122,7 +1188,15 @@ section {
         justify-content: center;
     }
 
-    .projects-grid { grid-template-columns: 1fr; }
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-btn-prev { left: 6px; }
+    .carousel-btn-next { right: 6px; }
+
     .leadership-grid { grid-template-columns: 1fr; }
 
     .hero-cta {
