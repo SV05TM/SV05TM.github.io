@@ -840,7 +840,7 @@ section {
 .projects {
     background-color: var(--color-bg-light);
     position: relative;
-    overflow: visible;
+    overflow: visible !important;
 }
 
 /* Marquee Carousel */
@@ -887,10 +887,10 @@ section {
     animation-iteration-count: infinite;
 }
 
-.carousel > article:nth-child(1) { animation-delay: calc(var(--carousel-duration) / var(--items) * 0 * -1); }
-.carousel > article:nth-child(2) { animation-delay: calc(var(--carousel-duration) / var(--items) * 1 * -1); }
-.carousel > article:nth-child(3) { animation-delay: calc(var(--carousel-duration) / var(--items) * 2 * -1); }
-.carousel > article:nth-child(4) { animation-delay: calc(var(--carousel-duration) / var(--items) * 3 * -1); }
+.carousel > article:nth-child(1) { animation-delay: 0s; }
+.carousel > article:nth-child(2) { animation-delay: -7.5s; }
+.carousel > article:nth-child(3) { animation-delay: -15s; }
+.carousel > article:nth-child(4) { animation-delay: -22.5s; }
 
 .carousel > article:hover {
     border-color: var(--color-accent);
@@ -898,8 +898,11 @@ section {
 }
 
 @keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
     100% {
-        transform: translateX(calc((var(--items) * (var(--carousel-item-width) + var(--carousel-item-gap))) * -1));
+        transform: translateX(-1408px);
     }
 }
 
