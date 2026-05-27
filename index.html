@@ -299,100 +299,105 @@
             <div class="container">
                 <h2 class="section-title"><span class="title-comment">// </span>Projects</h2>
                 <p class="section-subtitle">A selection of things I've built. Check out my GitHub for more.</p>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-card-glow" aria-hidden="true"></div>
-                        <div class="project-info">
-                            <div class="project-header">
-                                <span class="project-icon">�️</span>
-                                <h3 class="project-title">Semester Collab</h3>
+                <div class="carousel" aria-label="Projects carousel">
+                    <div class="carousel-track">
+                        <article class="project-card carousel-slide">
+                            <div class="project-card-glow" aria-hidden="true"></div>
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <span class="project-icon">🗓️</span>
+                                    <h3 class="project-title">Semester Collab</h3>
+                                </div>
+                                <p class="project-description">
+                                    Full-stack team collaboration app for managing semester events at GMU. 
+                                    Features real-time chat, Kanban task boards, budget tracking, AI assistant 
+                                    (Gemini), push notifications, and role-based access — deployed as a PWA.
+                                </p>
+                                <ul class="project-tech">
+                                    <li>React</li>
+                                    <li>Node.js</li>
+                                    <li>MongoDB</li>
+                                    <li>Socket.IO</li>
+                                    <li>Tailwind</li>
+                                    <li>Gemini AI</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a href="https://github.com/SV05TM/semester-collab" class="project-link" aria-label="View source code">$ git clone ↗</a>
+                                    <a href="https://semester-collab.onrender.com" class="project-link" aria-label="View live site">Live Demo ↗</a>
+                                </div>
                             </div>
-                            <p class="project-description">
-                                Full-stack team collaboration app for managing semester events at GMU. 
-                                Features real-time chat, Kanban task boards, budget tracking, AI assistant 
-                                (Gemini), push notifications, and role-based access — deployed as a PWA.
-                            </p>
-                            <ul class="project-tech">
-                                <li>React</li>
-                                <li>Node.js</li>
-                                <li>MongoDB</li>
-                                <li>Socket.IO</li>
-                                <li>Tailwind</li>
-                                <li>Gemini AI</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/SV05TM/semester-collab" class="project-link" aria-label="View source code">$ git clone ↗</a>
-                                <a href="https://semester-collab.onrender.com" class="project-link" aria-label="View live site">Live Demo ↗</a>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-card-glow" aria-hidden="true"></div>
-                        <div class="project-info">
-                            <div class="project-header">
-                                <span class="project-icon">�📦</span>
-                                <h3 class="project-title">E2E Testing Pipeline</h3>
+                        <article class="project-card carousel-slide">
+                            <div class="project-card-glow" aria-hidden="true"></div>
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <span class="project-icon">📦</span>
+                                    <h3 class="project-title">E2E Testing Pipeline</h3>
+                                </div>
+                                <p class="project-description">
+                                    Built an automated testing pipeline at Amazon that collected 200+ daily purchase samples 
+                                    via SQL query jobs, implemented lazy caching for 10× faster test execution, and 
+                                    deployed an approval workflow that cut build times from 4 hours to 15 minutes.
+                                </p>
+                                <ul class="project-tech">
+                                    <li>Python</li>
+                                    <li>SQL</li>
+                                    <li>AWS S3</li>
+                                    <li>Lambda</li>
+                                    <li>Multithreading</li>
+                                </ul>
+                                <span class="project-note">Internal — Amazon</span>
                             </div>
-                            <p class="project-description">
-                                Built an automated testing pipeline at Amazon that collected 200+ daily purchase samples 
-                                via SQL query jobs, implemented lazy caching for 10× faster test execution, and 
-                                deployed an approval workflow that cut build times from 4 hours to 15 minutes.
-                            </p>
-                            <ul class="project-tech">
-                                <li>Python</li>
-                                <li>SQL</li>
-                                <li>AWS S3</li>
-                                <li>Lambda</li>
-                                <li>Multithreading</li>
-                            </ul>
-                            <span class="project-note">Internal — Amazon</span>
-                        </div>
-                    </article>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-card-glow" aria-hidden="true"></div>
-                        <div class="project-info">
-                            <div class="project-header">
-                                <span class="project-icon">☁️</span>
-                                <h3 class="project-title">Cloud Data Management Platform</h3>
+                        <article class="project-card carousel-slide">
+                            <div class="project-card-glow" aria-hidden="true"></div>
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <span class="project-icon">☁️</span>
+                                    <h3 class="project-title">Cloud Data Management Platform</h3>
+                                </div>
+                                <p class="project-description">
+                                    Developed a cloud-native tool at Amazon that streamlined how e-commerce teams 
+                                    collect, organize, and access operational data — replacing manual workflows 
+                                    with an automated S3-backed system built in 1,000+ lines of Python.
+                                </p>
+                                <ul class="project-tech">
+                                    <li>Python</li>
+                                    <li>AWS S3</li>
+                                    <li>REST API</li>
+                                    <li>Cloud Architecture</li>
+                                </ul>
+                                <span class="project-note">Internal — Amazon</span>
                             </div>
-                            <p class="project-description">
-                                Developed a cloud-native tool at Amazon that streamlined how e-commerce teams 
-                                collect, organize, and access operational data — replacing manual workflows 
-                                with an automated S3-backed system built in 1,000+ lines of Python.
-                            </p>
-                            <ul class="project-tech">
-                                <li>Python</li>
-                                <li>AWS S3</li>
-                                <li>REST API</li>
-                                <li>Cloud Architecture</li>
-                            </ul>
-                            <span class="project-note">Internal — Amazon</span>
-                        </div>
-                    </article>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-card-glow" aria-hidden="true"></div>
-                        <div class="project-info">
-                            <div class="project-header">
-                                <span class="project-icon">🌐</span>
-                                <h3 class="project-title">Personal Portfolio</h3>
+                        <article class="project-card carousel-slide">
+                            <div class="project-card-glow" aria-hidden="true"></div>
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <span class="project-icon">🌐</span>
+                                    <h3 class="project-title">Personal Portfolio</h3>
+                                </div>
+                                <p class="project-description">
+                                    This website — a responsive, accessible personal site built with 
+                                    vanilla HTML, CSS, and JavaScript. No frameworks, no build step.
+                                </p>
+                                <ul class="project-tech">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a href="https://github.com/SV05TM" class="project-link" aria-label="View source code">$ git clone ↗</a>
+                                </div>
                             </div>
-                            <p class="project-description">
-                                This website — a responsive, accessible personal site built with 
-                                vanilla HTML, CSS, and JavaScript. No frameworks, no build step.
-                            </p>
-                            <ul class="project-tech">
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JavaScript</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/SV05TM" class="project-link" aria-label="View source code">$ git clone ↗</a>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
+                    <button class="carousel-btn carousel-btn-prev" aria-label="Previous project">&#8249;</button>
+                    <button class="carousel-btn carousel-btn-next" aria-label="Next project">&#8250;</button>
+                    <div class="carousel-dots" aria-label="Carousel navigation"></div>
                 </div>
             </div>
         </section>
