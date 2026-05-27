@@ -840,111 +840,76 @@ section {
 .projects {
     background-color: var(--color-bg-light);
     position: relative;
+    overflow: visible;
 }
 
-/* Carousel */
+/* Marquee Carousel */
 .carousel {
+    --items: 4;
+    --carousel-duration: 30s;
+    --carousel-width: min(90vw, 1000px);
+    --carousel-item-width: 320px;
+    --carousel-item-height: 380px;
+    --carousel-item-gap: 2rem;
+
     position: relative;
-    overflow: hidden;
-    border-radius: 12px;
+    width: var(--carousel-width);
+    height: var(--carousel-item-height);
+    overflow: clip;
+    margin: 0 auto;
 }
 
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.carousel[mask] {
+    mask-image: linear-gradient(to right, transparent, black 10% 90%, transparent);
 }
 
-.carousel-slide {
-    min-width: 100%;
-    flex-shrink: 0;
-    padding: 4px;
+.carousel:hover > article {
+    animation-play-state: paused;
 }
 
-.carousel-btn {
+.carousel > article {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+    top: 0;
+    left: calc(100% + var(--carousel-item-gap));
+    width: var(--carousel-item-width);
+    height: var(--carousel-item-height);
     border: 1px solid var(--color-border);
-    background: rgba(13, 17, 23, 0.85);
-    backdrop-filter: blur(8px);
-    color: var(--color-accent);
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition);
-    z-index: 5;
-}
-
-.carousel-btn:hover {
-    background: var(--color-accent);
-    color: var(--color-bg);
-    border-color: var(--color-accent);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-}
-
-.carousel-btn-prev { left: 12px; }
-.carousel-btn-next { right: 12px; }
-
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 24px;
-}
-
-.carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 2px solid var(--color-accent);
-    background: transparent;
-    cursor: pointer;
-    transition: all var(--transition);
+    border-radius: 12px;
+    background: var(--color-bg-card);
     padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    will-change: transform;
+    animation-name: marquee;
+    animation-duration: var(--carousel-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
-.carousel-dot.active,
-.carousel-dot:hover {
-    background: var(--color-accent);
-    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+.carousel > article:nth-child(1) { animation-delay: calc(var(--carousel-duration) / var(--items) * 0 * -1); }
+.carousel > article:nth-child(2) { animation-delay: calc(var(--carousel-duration) / var(--items) * 1 * -1); }
+.carousel > article:nth-child(3) { animation-delay: calc(var(--carousel-duration) / var(--items) * 2 * -1); }
+.carousel > article:nth-child(4) { animation-delay: calc(var(--carousel-duration) / var(--items) * 3 * -1); }
+
+.carousel > article:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-glow);
 }
 
-.project-card {
-    background-color: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 36px;
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-    position: relative;
+@keyframes marquee {
+    100% {
+        transform: translateX(calc((var(--items) * (var(--carousel-item-width) + var(--carousel-item-gap))) * -1));
+    }
+}
+
+.project-card-content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     overflow: hidden;
 }
-
-.project-card-glow {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, var(--color-accent-glow) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-}
-
-.project-card:hover .project-card-glow { opacity: 1; }
-
-.project-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--color-accent);
-    box-shadow: var(--shadow-glow), var(--shadow-lg);
-}
-
-.project-info { position: relative; z-index: 1; }
 
 .project-header {
     display: flex;
@@ -956,52 +921,68 @@ section {
 .project-icon { font-size: 1.5rem; }
 
 .project-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: var(--color-text);
+    margin: 0;
 }
 
 .project-description {
     color: var(--color-text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 20px;
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    flex: 1;
 }
 
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
     list-style: none;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .project-tech li {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--color-accent);
     background-color: rgba(56, 189, 248, 0.08);
     border: 1px solid rgba(56, 189, 248, 0.2);
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 20px;
 }
 
-.project-links { display: flex; gap: 16px; }
+.project-links {
+    display: flex;
+    gap: 16px;
+    margin-top: auto;
+}
 
 .project-link {
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
 .project-note {
     display: inline-block;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--color-text-muted);
     border: 1px solid var(--color-border);
     padding: 3px 10px;
     border-radius: 4px;
-    margin-top: 4px;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        --carousel-duration: 40s;
+        --carousel-item-width: 280px;
+        --carousel-item-height: 360px;
+        --carousel-width: 100vw;
+    }
 }
 
 /* ===== Leadership ===== */
@@ -1187,15 +1168,6 @@ section {
     .currently-tech {
         justify-content: center;
     }
-
-    .carousel-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 1.2rem;
-    }
-
-    .carousel-btn-prev { left: 6px; }
-    .carousel-btn-next { right: 6px; }
 
     .leadership-grid { grid-template-columns: 1fr; }
 
