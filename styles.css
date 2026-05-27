@@ -859,7 +859,8 @@ section {
     margin: 0 auto;
 }
 
-.carousel[mask] {
+.carousel.carousel-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10% 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10% 90%, transparent);
 }
 
