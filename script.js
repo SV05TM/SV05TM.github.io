@@ -1,11 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-// Prevent any horizontal scroll
-window.addEventListener('scroll', () => {
-    if (window.scrollX !== 0) {
-        window.scrollTo(0, window.scrollY);
-    }
-});
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Terminal-style loading screen
 setTimeout(() => {
@@ -62,77 +57,57 @@ document.querySelectorAll('.timeline-item').forEach((el, i) => {
     observer.observe(el);
 });
 
-document.querySelectorAll('.project-card, .leadership-card, .stack-item').forEach((el, i) => {
+document.querySelectorAll('.project-grid > article, .leadership-card, .stack-item').forEach((el, i) => {
     el.classList.add('fade-in');
     el.style.transitionDelay = `${(i % 6) * 0.08}s`;
     observer.observe(el);
 });
 
-// Header shadow on scroll
+// Header, hero, and nav updates share one throttled scroll handler.
 const header = document.querySelector('.header');
-
-window.addEventListener('scroll', () => {
-    if (header) {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.4)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
-    }
-});
-
-// Parallax effect on hero background
 const heroBg = document.querySelector('.hero-bg');
-
-window.addEventListener('scroll', () => {
-    if (heroBg) {
-        const scrolled = window.scrollY;
-        heroBg.style.transform = `scale(1.05) translateY(${scrolled * 0.35}px)`;
-    }
-});
-
-// Interactive glow effect on project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const glow = card.querySelector('.project-card-glow');
-        if (glow) {
-            glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(56, 189, 248, 0.12) 0%, transparent 50%)`;
-            glow.style.opacity = '1';
-        }
-    });
-
-    card.addEventListener('mouseleave', () => {
-        const glow = card.querySelector('.project-card-glow');
-        if (glow) glow.style.opacity = '0';
-    });
-});
-
-// Active nav link highlighting
 const sections = document.querySelectorAll('section[id]');
+let scrollTicking = false;
 
-window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY + 100;
+function updateScrollState() {
+    const scrollY = window.scrollY;
+
+    if (header) {
+        header.style.boxShadow = scrollY > 50 ? '0 4px 30px rgba(0, 0, 0, 0.4)' : 'none';
+    }
+
+    if (heroBg && !prefersReducedMotion) {
+        heroBg.style.transform = `scale(1.05) translateY(${scrollY * 0.35}px)`;
+    }
+
+    const activeY = scrollY + 100;
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
         const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
         if (navLink) {
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                navLink.style.color = 'var(--color-accent)';
-            } else {
-                navLink.style.color = '';
-            }
+            navLink.style.color = activeY >= sectionTop && activeY < sectionTop + sectionHeight
+                ? 'var(--color-accent)'
+                : '';
         }
     });
-});
+
+    scrollTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+        window.requestAnimationFrame(updateScrollState);
+        scrollTicking = true;
+    }
+}, { passive: true });
+
+updateScrollState();
 
 // Typing effect for hero tagline
 const tagline = document.querySelector('.hero-tagline');
-if (tagline) {
+if (tagline && !prefersReducedMotion) {
     const text = tagline.textContent;
     tagline.textContent = '';
     tagline.style.borderRight = '2px solid var(--color-green)';
@@ -230,12 +205,16 @@ empowering the Latino STEM community, and I love Coffee!`,
 <span class="success">→</span> President of Phi Iota Alpha Fraternity
 <span class="success">→</span> Mentoring underclassmen at George Mason University`,
 
-        socials: () => `<span class="success">GitHub:</span>   <a href="https://github.com/SV05TM" target="_blank">github.com/SV05TM</a>
-<span class="success">LinkedIn:</span> <a href="https://www.linkedin.com/in/sv-link/" target="_blank">linkedin.com/in/sv-link</a>
+        socials: () => `<span class="success">GitHub:</span>   <a href="https://github.com/SV05TM" target="_blank" rel="noopener noreferrer">github.com/SV05TM</a>
+<span class="success">LinkedIn:</span> <a href="https://www.linkedin.com/in/sv-link/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sv-link</a>
 <span class="success">Website:</span>  <a href="https://saulv.dev">saulv.dev</a>`,
 
-        resume: () => `<span class="success">Downloading resume...</span> (just kidding — add your PDF link here)
-Tip: Add a resume.pdf to your repo and update this command.`,
+        resume: () => {
+            const resumeUrl = 'Villatoro,%20Saul%20Resume_February_2026_Economic_Scholar.pdf';
+            window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+            return `<span class="success">Opening resume...</span>
+<a href="${resumeUrl}" target="_blank" rel="noopener noreferrer">Download Saul Villatoro's resume</a>`;
+        },
 
         secret: () => `<span class="success">🎉 You found the easter egg!</span>
 Fun facts:

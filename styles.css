@@ -167,7 +167,7 @@ a:hover {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 28px;
+    gap: 22px;
 }
 
 .nav-links a {
@@ -225,7 +225,7 @@ a:hover {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('images/hero-bg.jpg');
+    background-image: url('images/hero-bg-2000.jpg');
     background-size: cover;
     background-position: center;
     transform: scale(1.05);
@@ -843,68 +843,30 @@ section {
     overflow: visible !important;
 }
 
-/* Marquee Carousel */
-.carousel {
-    --items: 4;
-    --carousel-duration: 30s;
-    --carousel-width: min(90vw, 1000px);
-    --carousel-item-width: 320px;
-    --carousel-item-height: 380px;
-    --carousel-item-gap: 2rem;
-
-    position: relative;
-    width: var(--carousel-width);
-    height: var(--carousel-item-height);
-    overflow: clip;
+/* Project Grid */
+.project-grid {
+    width: min(100% - 48px, var(--container-max));
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
 }
 
-.carousel.carousel-mask {
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10% 90%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 10% 90%, transparent);
-}
-
-.carousel:hover > article {
-    animation-play-state: paused;
-}
-
-.carousel > article {
-    position: absolute;
-    top: 0;
-    left: calc(100% + var(--carousel-item-gap));
-    width: var(--carousel-item-width);
-    height: var(--carousel-item-height);
+.project-grid > article {
+    min-height: 360px;
     border: 1px solid var(--color-border);
     border-radius: 12px;
     background: var(--color-bg-card);
     padding: 0;
     display: flex;
     flex-direction: column;
-
-    will-change: transform;
-    animation-name: marquee;
-    animation-duration: var(--carousel-duration);
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
-.carousel > article:nth-child(1) { animation-delay: 0s; }
-.carousel > article:nth-child(2) { animation-delay: -7.5s; }
-.carousel > article:nth-child(3) { animation-delay: -15s; }
-.carousel > article:nth-child(4) { animation-delay: -22.5s; }
-
-.carousel > article:hover {
+.project-grid > article:hover {
     border-color: var(--color-accent);
     box-shadow: var(--shadow-glow);
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-1408px);
-    }
+    transform: translateY(-4px);
 }
 
 .project-card-content {
@@ -981,11 +943,9 @@ section {
 }
 
 @media (max-width: 768px) {
-    .carousel {
-        --carousel-duration: 40s;
-        --carousel-item-width: 280px;
-        --carousel-item-height: 360px;
-        --carousel-width: 100vw;
+    .project-grid {
+        width: min(100% - 32px, var(--container-max));
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1181,6 +1141,7 @@ section {
     }
 
     .hero-bg {
+        background-image: url('images/hero-bg-1200.jpg');
         background-attachment: scroll;
         position: absolute;
     }
@@ -1227,6 +1188,21 @@ section {
     .slide-in-left.visible {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .hero-bg {
+        transform: none !important;
     }
 }
 
